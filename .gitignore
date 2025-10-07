@@ -1,0 +1,15 @@
+# Node / Next.js
+node_modules/
+.next/
+dist/
+out/
+coverage/
+# Env & local data
+.env*
+*.log
+data/*.json
+# Prisma
+prisma/dev.db
+prisma/migrations/
+# OS
+.DS_Store
