@@ -1,1 +1,63 @@
-<paste contents here>
+# ────────────────────────────────
+# Normalize line endings
+# ────────────────────────────────
+* text=auto eol=lf
+
+# ────────────────────────────────
+# Explicit text types
+# ────────────────────────────────
+*.ts   text diff=typescript
+*.tsx  text diff=typescript
+*.js   text diff=javascript
+*.jsx  text diff=javascript
+*.json text
+*.yml  text
+*.yaml text
+*.md   text
+*.graphql text
+*.sql  text
+*.prisma text
+*.env  text
+*.sh   text eol=lf
+*.html text
+*.css  text
+*.scss text
+
+# ────────────────────────────────
+# Ignore line-ending normalization for binary files
+# ────────────────────────────────
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.svg binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.gz  binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.mp4 binary
+*.mov binary
+
+# ────────────────────────────────
+# Lock down specific directories (optional)
+# ────────────────────────────────
+/node_modules/** binary
+/.next/** binary
+/dist/** binary
+
+# ────────────────────────────────
+# Merge / diff behavior tweaks
+# ────────────────────────────────
+*.lock merge=union
+package-lock.json merge=union
+yarn.lock merge=union
+pnpm-lock.yaml merge=union
+
+# ────────────────────────────────
+# Enforce consistent GitHub diffs
+# ────────────────────────────────
+*.prisma diff=prisma

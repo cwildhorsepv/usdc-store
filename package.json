@@ -1,51 +1,57 @@
 {
-    "name": "mwall-frontend",
-    "version": "0.1.0",
-    "private": true,
-    "scripts": {
-        "dev": "next dev",
-        "build": "next build",
-        "start": "next start",
-        "lint": "next lint",
-        "sandbox": "tsx server/sandbox/index.ts",
-        "seed": "tsx prisma/seed.ts",
-        "stub:secret": "tsx server/stubs/secret-store/index.ts",
-        "stub:guardians": "tsx server/stubs/guardians/index.ts",
-        "stub:webhooks": "tsx server/stubs/webhooks/index.ts",
-        "sandbox:start": "tsx scripts/sandbox-start.ts"
-    },
-    "dependencies": {
-        "@auth0/auth0-react": "^2.5.0",
-        "@auth0/nextjs-auth0": "^3.3.0",
-        "@prisma/client": "^6.16.3",
-        "axios": "^1.6.0",
-        "body-parser": "^2.2.0",
-        "cookie": "^1.0.2",
-        "express": "^5.1.0",
-        "next": "^14.2.33",
-        "react": "^18.3.1",
-        "react-dom": "^18.3.1",
-        "swr": "^2.3.6"
-    },
-    "devDependencies": {
-        "@netlify/plugin-nextjs": "^5.13.4",
-        "@types/body-parser": "^1.19.6",
-        "@types/express": "^5.0.3",
-        "@types/node": "^24.6.0",
-        "@types/react": "18.2.0",
-        "autoprefixer": "^10.4.14",
-        "execa": "^9.6.0",
-        "module-alias": "^2.2.3",
-        "postcss": "^8.4.21",
-        "prisma": "^6.16.3",
-        "tailwindcss": "^3.3.2",
-        "ts-node": "^10.9.2",
-        "tsconfig-paths": "^4.2.0",
-        "tsx": "^4.20.6",
-        "typescript": "^5.9.3"
-    },
-    "_moduleAliases": {
-        "@lib": "src/lib",
-        "@server": "src/server"
-    }
+  "name": "mwall-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "dev:all": "concurrently -k -n WEB,SBX -c green,magenta \"npm run dev\" \"SANDBOX_WATCH=1 npm run sandbox:start\"",
+    "sandbox": "npm run sandbox:start",
+    "seed": "tsx prisma/seed.ts",
+    "stub:secret": "tsx server/stubs/secret-store/index.ts",
+    "stub:guardians": "tsx server/stubs/guardians/index.ts",
+    "stub:webhooks": "tsx server/stubs/webhooks/index.ts",
+    "sandbox:start": "tsx scripts/sandbox-start.ts"
+  },
+  "dependencies": {
+    "@auth0/auth0-react": "^2.5.0",
+    "@auth0/nextjs-auth0": "^3.3.0",
+    "@prisma/client": "^6.16.3",
+    "axios": "^1.6.0",
+    "body-parser": "^2.2.0",
+    "cookie": "^1.0.2",
+    "express": "^5.1.0",
+    "framer-motion": "^12.23.22",
+    "next": "^14.2.33",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "swr": "^2.3.6"
+  },
+  "devDependencies": {
+    "@netlify/plugin-nextjs": "^5.13.4",
+    "@types/body-parser": "^1.19.6",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.6.0",
+    "@types/react": "18.2.0",
+    "autoprefixer": "^10.4.14",
+    "concurrently": "^9.2.1",
+    "eslint-import-resolver-node": "^0.3.9",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
+    "execa": "^9.6.0",
+    "module-alias": "^2.2.3",
+    "postcss": "^8.4.21",
+    "prisma": "^6.16.3",
+    "tailwindcss": "^3.3.2",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  },
+  "_moduleAliases": {
+    "@lib": "src/lib",
+    "@server": "src/server"
+  }
 }

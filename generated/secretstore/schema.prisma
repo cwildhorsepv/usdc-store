@@ -1,0 +1,17 @@
+datasource secretStoreDb {
+  provider = "postgresql"
+  url      = env("SECRET_STORE_DATABASE_URL")
+}
+
+generator secretstoreClient {
+  provider = "prisma-client-js"
+  output   = "../generated/secretstore"
+}
+
+model Secret {
+  id            String   @id @default(cuid())
+  walletId      String
+  domain        String   @default("blockchain")
+  encryptedBlob String
+  createdAt     DateTime @default(now())
+}

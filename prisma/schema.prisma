@@ -302,3 +302,67 @@ enum ViewportType {
   PROCESSOR
   SETTLEMENT
 }
+
+enum TxStatus {
+  SUBMITTED
+  CONFIRMED
+  FAILED
+}
+
+model ChainTx {
+  id          String    @id @default(cuid())
+  chain       String    @default("stubnet")
+  txHash      String    @unique
+  from        String
+  to          String
+  amountUSDC  Decimal   @db.Decimal(78, 6)
+  status      TxStatus  @default(SUBMITTED)
+  createdAt   DateTime  @default(now())
+  confirmedAt DateTime?
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+enum AchStatus {
+  PENDING
+  SETTLED
+  FAILED
+}
+
+model AchPayment {
+  id        String    @id @default(cuid())
+  fromAcct  String
+  toAcct    String
+  amountUSD Decimal   @db.Decimal(78, 2)
+  status    AchStatus @default(PENDING)
+  createdAt DateTime  @default(now())
+  settledAt DateTime?
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+enum ApprovalStatus {
+  PENDING
+  APPROVED
+  DENIED
+}
+
+model Approval {
+  id        String         @id @default(cuid())
+  subject   String // e.g., "pledge:abc123"
+  actor     String // who is approving
+  status    ApprovalStatus @default(PENDING)
+  createdAt DateTime       @default(now())
+  decidedAt DateTime?
+}
+
+model EventLog {
+  id        String   @id @default(cuid())
+  topic     String // e.g., "PaymentConfirmed"
+  payload   Json
+  createdAt DateTime @default(now())
+
+  @@index([topic, createdAt])
+}
